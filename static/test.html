@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Board</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/static/bootstrap-5.0.0-beta2-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap-5.0.0-beta2-dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="/static/ico/v_with_white_background.png" type="image/png">
+</head>
+<body>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Цвета</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="big_pallet">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="red-tab" data-bs-toggle="tab" data-bs-target="#red"
+                                    type="button" role="tab" aria-controls="red" aria-selected="true">Красный
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="yellow-tab" data-bs-toggle="tab" data-bs-target="#yellow"
+                                    type="button" role="tab" aria-controls="yellow" aria-selected="false">Жёлтый
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="green-tab" data-bs-toggle="tab" data-bs-target="#green"
+                                    type="button" role="tab" aria-controls="green" aria-selected="false">Зелёный
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="wblue-tab" data-bs-toggle="tab" data-bs-target="#wblue"
+                                    type="button" role="tab" aria-controls="wblue" aria-selected="false">Голоубой
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="blue-tab" data-bs-toggle="tab" data-bs-target="#blue"
+                                    type="button" role="tab" aria-controls="blue" aria-selected="false">Синий
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="purple-tab" data-bs-toggle="tab" data-bs-target="#purple"
+                                    type="button" role="tab" aria-controls="purple" aria-selected="false">Фиолетовый
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="white-tab" data-bs-toggle="tab" data-bs-target="#white"
+                                    type="button" role="tab" aria-controls="white" aria-selected="false">Белый
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="ycolor-tab" data-bs-toggle="tab" data-bs-target="#ycolor"
+                                    type="button" role="tab" aria-controls="ycolor" aria-selected="false">Ваши цвета
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="red" role="tabpanel" aria-labelledby="red"></div>
+                        <div class="tab-pane fade" id="yellow" role="tabpanel" aria-labelledby="yellow"></div>
+                        <div class="tab-pane fade" id="green" role="tabpanel" aria-labelledby="green"></div>
+                        <div class="tab-pane fade" id="wblue" role="tabpanel" aria-labelledby="wblue"></div>
+                        <div class="tab-pane fade" id="blue" role="tabpanel" aria-labelledby="blue"></div>
+                        <div class="tab-pane fade" id="purple" role="tabpanel" aria-labelledby="purple"></div>
+                        <div class="tab-pane fade" id="white" role="tabpanel" aria-labelledby="white"></div>
+                        <div class="tab-pane fade" id="ycolor" role="tabpanel" aria-labelledby="ycolor">
+                            <div style="width: 100%"><label for="inp_color">Создайте цвет: </label>
+                                <input type="color"
+                                       id="inp_color">
+                                <button class="btn btn-success btn-sm" onclick="color_ch()">Добавить</button>
+                            </div>
+                            <div id="gener">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="color_now">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="collapse top-0" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+        <div class="input-group mb-3">
+            <span class="input-group-text bg-success">Сслылка приглашение:</span>
+            <input type="text" class="form-control" placeholder="Recipient's username"
+                   aria-label="key" id="url" disabled>
+            <button class="btn btn-success" onclick="copy_url()">Скопироать</button>
+        </div>
+        aria-disabled="true">&raquo;
+        <div id="head">
+            <ul class="pagination">
+                <li>
+                    <a class="page-link col" href="#" onclick="prev_page()" tabindex="-1"
+                       aria-disabled="true">&laquo;
+                    </a>
+                </li>
+                <li>
+                    <ul class="pagination" id="pages">
+                        <li class="page-item"><a class="page-link" onclick="page(0, 0)" href="#">1</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="page-link col" href="#" onclick="next_page()" tabindex="-1">&raquo;
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-success" onclick="exportPdf()">Скачать</button>
+    </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid" style="color: white;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col">
+                    <input type="range" onchange="change()" class="form-range" min="1" max="250" value="12"
+                           id="size" title="Ширина линии">
+                </div>
+                <div class="col">
+                    <select id="tools" class="form-select" onchange="tools()">
+                        <option value="1" selected>Ручка</option>
+                        <option value="2">Ластик</option>
+                        <option value="3">Линия</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <div>
+                        <button type="button" class="btn btn-success" onclick="undo_redo(-1)">Назад</button>
+                        <button type="button" class="btn btn-success" onclick="undo_redo(1)">Вперёд</button>
+                    </div>
+                </div>
+                <div class="col" id="palitra">
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-success" onclick="colors()">Больше цветов</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-success" onclick="cl()">Очистить всё</button>
+                </div>
+                <div class="col" style="font-size: xx-large; color: white"><b id="page">1</b>/<b id="a_page">1</b></div>
+            </div>
+        </div>
+    </div>
+</nav>
+<canvas id="board"></canvas>
+<script src="/static/node_modules/socket.io/client-dist/socket.io.min.js"></script>
+<script src="/static/test.js"></script>
+<script src="/static/node_modules/canvas.js"></script>
+<script src="/static/node_modules/jspdf.js"></script>
+<link rel="stylesheet" href="/static/img.css"/>
+</body>
+</html>

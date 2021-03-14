@@ -1,0 +1,21 @@
+#head {
+    overflow-x: auto;
+}
+
+#board {
+    position: fixed;
+}
+
+#navbarToggleExternalContent {
+    position: sticky;
+    top: 0;
+}
+
+.page-link {
+    user-select: none;
+}
+
+#url {
+    cursor: copy;
+    user-select: none;
+}
